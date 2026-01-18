@@ -8,6 +8,7 @@ import {
   SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
+import { WalletConnectTracker } from "@/components/WalletConnectTracker";
 
 const network = "devnet";
 
@@ -22,6 +23,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
+        <WalletConnectTracker />
       </WalletProvider>
     </ConnectionProvider>
   );

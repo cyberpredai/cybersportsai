@@ -41,9 +41,14 @@ export function Hero() {
           label="Connect Wallet"
           className="w-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] sm:w-auto"
         />
-        <button className="w-full rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white/80 sm:w-auto">
+        <a
+          href="https://github.com/cyberpredai/cybersportsai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 text-center text-sm font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white/95 sm:w-auto"
+        >
           View Docs
-        </button>
+        </a>
       </div>
     </section>
   );

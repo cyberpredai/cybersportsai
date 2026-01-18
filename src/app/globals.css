@@ -1,8 +1,12 @@
+@import "@solana/wallet-adapter-react-ui/styles.css";
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05060a;
+  --foreground: #e7ecff;
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --glass: rgba(12, 17, 32, 0.65);
 }
 
 @theme inline {
@@ -14,13 +18,123 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #05060a;
+    --foreground: #e7ecff;
   }
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(124, 58, 237, 0.2), transparent 60%),
+    radial-gradient(900px 520px at 90% 10%, rgba(34, 211, 238, 0.18), transparent 55%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.font-unbounded {
+  font-family: var(--font-unbounded), "Unbounded", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: "Druk Wide", "Integral CF", var(--font-unbounded), system-ui, sans-serif;
+}
+
+.font-space {
+  font-family: var(--font-space-mono), "Space Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.35);
+  color: #ffffff;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+  transition: transform 150ms ease;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: rgba(34, 211, 238, 0.85);
+  transform: translate(2px, -1px);
+}
+
+.glitch::after {
+  color: rgba(124, 58, 237, 0.85);
+  transform: translate(-2px, 1px);
+}
+
+.glitch:hover {
+  transform: skewX(-8deg);
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  opacity: 1;
+  animation: glitch-shift 450ms ease-in-out infinite;
+}
+
+@keyframes glitch-shift {
+  0% {
+    transform: translate(2px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    transform: translate(2px, -1px);
+  }
+}
+
+.marquee {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+  color: #e9f2ff;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 4px;
+  background: #14f195;
+  vertical-align: -2px;
+  animation: typewriter-blink 0.9s steps(1) infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes typewriter-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }

@@ -3,7 +3,10 @@
 import { useMemo, type ReactNode } from "react";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import {
+  type WalletAdapter,
+  WalletAdapterNetwork,
+} from "@solana/wallet-adapter-base";
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
@@ -20,7 +23,10 @@ const walletConnectProjectId =
 export function Providers({ children }: { children: ReactNode }) {
   const endpoint = useMemo(() => clusterApiUrl(network), []);
   const wallets = useMemo(() => {
-    const adapters = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
+    const adapters: WalletAdapter[] = [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+    ];
 
     if (walletConnectProjectId) {
       adapters.push(

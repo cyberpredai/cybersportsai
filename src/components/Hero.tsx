@@ -38,7 +38,6 @@ export function Hero() {
           label="Launch Arena"
           className="w-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] sm:w-auto"
         />
-        <WalletMultiButton className="!w-full !rounded-full !bg-gradient-to-r !from-[#9945FF] !to-[#14F195] !px-8 !py-4 !text-sm !font-semibold !uppercase !tracking-[0.3em] !text-black !shadow-[0_0_25px_rgba(153,69,255,0.6)] transition-all duration-200 hover:!scale-105 hover:!shadow-[0_0_35px_rgba(153,69,255,0.9)] sm:!w-auto" />
         <a
           href="https://github.com/cyberpredai/cybersportsai"
           target="_blank"

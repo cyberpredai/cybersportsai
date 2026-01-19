@@ -2,6 +2,7 @@
 
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
+import { WalletConnectWalletName } from "@solana/wallet-adapter-walletconnect";
 
 const baseClasses =
   "rounded-full bg-gradient-to-r from-[#9945FF] to-[#14F195] text-black shadow-[0_0_25px_rgba(153,69,255,0.6)] transition-all duration-200 hover:scale-105 hover:shadow-[0_0_35px_rgba(153,69,255,0.9)]";
@@ -36,7 +37,7 @@ export function ConnectButton({
 
     if (isMobile) {
       try {
-        select("WalletConnect");
+        select(WalletConnectWalletName);
         await connect();
         return;
       } catch {

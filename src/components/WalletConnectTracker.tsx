@@ -13,8 +13,12 @@ export function WalletConnectTracker() {
     const address = publicKey.toBase58();
     const storageKey = `wallet-connect-notified:${address}`;
 
-    if (window.sessionStorage.getItem(storageKey)) return;
-    window.sessionStorage.setItem(storageKey, "1");
+    try {
+      if (window.sessionStorage.getItem(storageKey)) return;
+      window.sessionStorage.setItem(storageKey, "1");
+    } catch {
+      // Ignore storage errors
+    }
 
     fetch("/api/telemetry/wallet-connect", {
       method: "POST",

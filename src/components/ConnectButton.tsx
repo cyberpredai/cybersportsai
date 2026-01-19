@@ -9,17 +9,42 @@ const baseClasses =
 export function ConnectButton({
   label,
   className,
+  showAddress,
 }: {
   label: string;
   className?: string;
+  showAddress?: boolean;
 }) {
-  const { connected } = useWallet();
+  const { connected, publicKey, select, connect } = useWallet();
   const { setVisible } = useWalletModal();
 
-  const handleClick = () => {
-    if (!connected) {
-      setVisible(true);
+  const isMobile =
+    typeof window !== "undefined" &&
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+      navigator.userAgent
+    );
+
+  const displayLabel =
+    showAddress && connected && publicKey
+      ? `${publicKey.toBase58().slice(0, 4)}...${publicKey
+          .toBase58()
+          .slice(-4)}`
+      : label;
+
+  const handleClick = async () => {
+    if (connected) return;
+
+    if (isMobile) {
+      try {
+        select("WalletConnect");
+        await connect();
+        return;
+      } catch {
+        // Fall back to modal
+      }
     }
+
+    setVisible(true);
   };
 
   return (
@@ -28,7 +53,7 @@ export function ConnectButton({
       onClick={handleClick}
       className={`${baseClasses} ${className ?? ""}`}
     >
-      {label}
+      {displayLabel}
     </button>
   );
 }
